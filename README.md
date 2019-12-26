@@ -8,6 +8,9 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## Table of Contents
   - [npm install](#npm-install)
   - [npm start](#npm-start)
+  - [npm test](#npm-test)
+  - [npm build](#npm-run-build)
+  - [Tech](#Tech)
 
 ### `npm install`
 
@@ -36,3 +39,11 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](#deployment) for more information.
+
+### `Tech`
+* React 
+* Redux
+* Javascript
+* Html5
+
+
