@@ -44,6 +44,5 @@ See the section about [deployment](#deployment) for more information.
 * React 
 * Redux
 * Javascript
-* Html5
-
+* redux-thunk
 
