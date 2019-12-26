@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import CounterControl from '../../components/CounterControl/CounterControl';
-import CounterOutput from '../../components/CounterOutput/CounterOutput';
+import CounterControl from '../../components/counter-control/counter-control';
+import CounterOutput from '../../components/counter-output/counter-output';
 
 import { connect } from 'react-redux';
-import actionsEnum from "../../store/actions";
+import * as actionsCreator from "../../store/actions/index";
 
 class Counter extends Component {
 
@@ -37,12 +37,12 @@ const mapStateToProps = (state)=> {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onIncrement: () => dispatch({type: actionsEnum.INCREMENT}),
-        onDecrement: () => dispatch({type: actionsEnum.DECREMENT}),
-        onAddition: () => dispatch({type: actionsEnum.ADD, value: 5}),
-        onSubtract: () => dispatch({type: actionsEnum.SUBTRACT, value: 5}),
-        onStoreResult: (result) => dispatch({type: actionsEnum.STORE_RESULT, result: result}),
-        onDeleteResult: (id) => dispatch({type: actionsEnum.DELETE_RESULT, resultId: id})
+        onIncrement: () =>  dispatch(actionsCreator.increment()),
+        onDecrement: () => dispatch(actionsCreator.decrement()),
+        onAddition: () => dispatch(actionsCreator.add({value: 5})),
+        onSubtract: () => dispatch(actionsCreator.sub({value: 5})),
+        onStoreResult: (result) => dispatch(actionsCreator.storeResult({ result: result})),
+        onDeleteResult: (id) => dispatch(actionsCreator.deleteResult({resultId: id}))
     }
 };
 

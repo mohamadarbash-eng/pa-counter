@@ -1,19 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import {createStore, combineReducers} from "redux";
-import {Provider} from "react-redux";
-import resultReducer from "./store/reducers/result-reducer";
-import counterReducer from "./store/reducers/counter-reducer";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import registerServiceWorker from "./registerServiceWorker";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import * as reducers  from "./store/reducers/index";
+
+import reduxThunk from 'redux-thunk';
 
 const combinedReducers = combineReducers({
-    res: resultReducer,
-    ctr: counterReducer
+    res: reducers.resultReducer,
+    ctr: reducers.counterReducer
 });
 
-const store = createStore(combinedReducers);
+// redux dev tool ;)
+const logger = store => {
+    return next => {
+        return action => {
+            console.log("Middleware Dispatching", action);
+            const result = next(action);
+            console.log("Middleware store", store.getState());
+            return result;
+        }
+    }
+};
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+const store = createStore(combinedReducers, composeEnhancers(applyMiddleware(logger, reduxThunk)));
+
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById("root"));
 registerServiceWorker();

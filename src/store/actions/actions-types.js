@@ -1,4 +1,4 @@
-const actionsEnum = {
+export const actionsEnum = {
     INCREMENT: 'INCREMENT',
     DECREMENT: 'DECREMENT',
     ADD: 'ADD_COUNTER',
@@ -7,4 +7,3 @@ const actionsEnum = {
     DELETE_RESULT: 'DELETE_RESULT'
 };
 
-export default actionsEnum;
